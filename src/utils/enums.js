@@ -1,4 +1,11 @@
 /*eslint-disable no-useless-computed-key*/
+export const enumProfilesUser = Object.freeze({
+  SUPER_ADMIN: 1,
+  MANAGER: 2,
+  SPECIALIST: 3,
+  PATIENT: 4
+});
+
 export const enumUserTypes = Object.freeze({
   PLAYER_SILVER: 1,
   PLAYER_GOLD: 2,
