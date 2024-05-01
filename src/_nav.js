@@ -73,6 +73,18 @@ const _nav = [
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />
   },
   {
+    component: CNavItem,
+    name: 'Listado especialistas',
+    to: '/especialistas/listado',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />
+  },
+  {
+    component: CNavItem,
+    name: 'Agregar especialista',
+    to: '/especialistas/agregar',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />
+  },
+  {
     component: CNavTitle,
     name: 'Certificados'
   },

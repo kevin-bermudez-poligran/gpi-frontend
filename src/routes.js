@@ -65,9 +65,12 @@ const EditarPlan = React.lazy(() => import('./views/planes/EditarPlan'));
 const ListadoSuperUsuarios = React.lazy(() => import('./views/cazatalentos/ListadoSuperUsuarios'));
 const ListadoPacientes = React.lazy(() => import('./views/cazatalentos/ListadoPacientes'));
 const ListadoGestores = React.lazy(() => import('./views/cazatalentos/ListadoGestores'));
+const ListadoEspecialistas = React.lazy(() => import('./views/cazatalentos/ListadoEspecialistas'));
+
 const AgregarSuperusuario = React.lazy(() => import('./views/cazatalentos/AgregarSuperusuarios'));
 const AgregarPaciente = React.lazy(() => import('./views/cazatalentos/AgregarPaciente'));
 const AgregarGestor = React.lazy(() => import('./views/cazatalentos/AgregarGestor'));
+const AgregarEspecialist = React.lazy(() => import('./views/cazatalentos/AgregarEspecialista'));
 
 // const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 
@@ -156,6 +159,24 @@ const routes = [
     exact: true,
     name: 'Agregar paciente',
     component: AgregarGestor
+  },
+  {
+    path: '/especialistas',
+    exact: true,
+    name: 'Especialistas',
+    component: ListadoEspecialistas
+  },
+  {
+    path: '/especialistas/listado',
+    exact: true,
+    name: 'Especialistas',
+    component: ListadoEspecialistas
+  },
+  {
+    path: '/especialistas/agregar',
+    exact: true,
+    name: 'Agregar especialista',
+    component: AgregarEspecialist
   },
   {
     path: '/cazatalentos/listado/agregar',
