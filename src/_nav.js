@@ -34,12 +34,30 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Cazatalentos'
+    name: 'Usuarios'
   },
   {
     component: CNavItem,
-    name: 'Listado',
-    to: '/cazatalentos/listado',
+    name: 'Listado superusuarios',
+    to: '/superusuarios/listado',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />
+  },
+  {
+    component: CNavItem,
+    name: 'Agregar superusuario',
+    to: '/superusuarios/agregar',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />
+  },
+  {
+    component: CNavItem,
+    name: 'Listado pacientes',
+    to: '/pacientes/listado',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />
+  },
+  {
+    component: CNavItem,
+    name: 'Agregar paciente',
+    to: '/pacientes/agregar',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />
   },
   {

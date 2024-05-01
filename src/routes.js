@@ -1,6 +1,7 @@
 import React from 'react';
 import ListadoCupones from './views/cupones/ListadoCupones';
 import AgregarCupon from './views/cupones/AgregarCupon';
+import { components } from 'react-select';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
 // const Colors = React.lazy(() => import('./views/theme/colors/Colors'));
@@ -61,6 +62,11 @@ const AgregarDescuento = React.lazy(() => import('./views/descuentos/AgregarDesc
 const ListadoPlanes = React.lazy(() => import('./views/planes/ListadoPlanes'));
 const EditarPlan = React.lazy(() => import('./views/planes/EditarPlan'));
 
+const ListadoSuperUsuarios = React.lazy(() => import('./views/cazatalentos/ListadoSuperUsuarios'));
+const ListadoPacientes = React.lazy(() => import('./views/cazatalentos/ListadoPacientes'));
+const AgregarSuperusuario = React.lazy(() => import('./views/cazatalentos/AgregarSuperusuarios'));
+const AgregarPaciente = React.lazy(() => import('./views/cazatalentos/AgregarPaciente'));
+
 // const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 
 const routes = [
@@ -94,6 +100,42 @@ const routes = [
     exact: true,
     name: 'Cazatalentos',
     component: ListadoCazatalentos
+  },
+  {
+    path: '/superusuarios',
+    exact: true,
+    name: 'Superusuarios',
+    component: ListadoSuperUsuarios
+  },
+  {
+    path: '/superusuarios/listado',
+    exact: true,
+    name: 'Superusuarios',
+    component: ListadoSuperUsuarios
+  },
+  {
+    path: '/superusuarios/agregar',
+    exact: true,
+    name: 'Agregar superusuarios',
+    component: AgregarSuperusuario
+  },
+  {
+    path: '/pacientes',
+    exact: true,
+    name: 'Pacientes',
+    component: ListadoPacientes
+  },
+  {
+    path: '/pacientes/listado',
+    exact: true,
+    name: 'Pacientes',
+    component: ListadoPacientes
+  },
+  {
+    path: '/pacientes/agregar',
+    exact: true,
+    name: 'Agregar paciente',
+    component: AgregarPaciente
   },
   {
     path: '/cazatalentos/listado/agregar',
