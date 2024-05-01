@@ -72,6 +72,9 @@ const AgregarPaciente = React.lazy(() => import('./views/cazatalentos/AgregarPac
 const AgregarGestor = React.lazy(() => import('./views/cazatalentos/AgregarGestor'));
 const AgregarEspecialist = React.lazy(() => import('./views/cazatalentos/AgregarEspecialista'));
 
+const AgregarHorario = React.lazy(() => import('./views/publicidad/AgregarHorario'));
+const ListadoHorarios = React.lazy(() => import('./views/publicidad/ListadoHorarios'));
+
 // const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 
 const routes = [
@@ -177,6 +180,24 @@ const routes = [
     exact: true,
     name: 'Agregar especialista',
     component: AgregarEspecialist
+  },
+  {
+    path: '/horarios',
+    exact: true,
+    name: 'Horarios',
+    component: ListadoHorarios
+  },
+  {
+    path: '/horarios/listado',
+    exact: true,
+    name: 'Horarios',
+    component: ListadoHorarios
+  },
+  {
+    path: '/horarios/agregar',
+    exact: true,
+    name: 'Agregar horario',
+    component: AgregarHorario
   },
   {
     path: '/cazatalentos/listado/agregar',

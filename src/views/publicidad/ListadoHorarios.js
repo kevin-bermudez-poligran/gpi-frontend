@@ -13,24 +13,23 @@ import {
   CTableDataCell
 } from '@coreui/react';
 import { Link } from 'react-router-dom';
-import { getCazatalentos } from '../../services/users/getCazatalentos';
+import { getAllAdvertisingList } from '../../services/advertising/getAdvertisingList';
 import PaginationCF from '../../components/PaginationCF';
-import requestDeleteAccount from 'src/services/users/requestDeleteAccount';
-import { getUsersByProfile } from 'src/services/users/getUsersByProfile';
-import { deleteSpecialist } from 'src/services/specialists/deleteSpecialty';
+import { getSpecailistSchedulesBySpecialist } from 'src/services/specialists/getSpecailistSchedulesBySpecialist';
+import { deleteSpecialistSchedule } from 'src/services/specialists/deleteSpecialistSchedule';
 
-const ListadoCazatalentos = () => {
+const Publicaciones = () => {
   const [advertisingList, setAdvertisingList] = useState(null);
   const [pagination, setPagination] = useState(null);
   const search = new URLSearchParams(useLocation().search);
 
   const loadAdvertising = newPage => {
     const currentPage = newPage || search.get('page') || 1;
-    getUsersByProfile(3)
+
+    getSpecailistSchedulesBySpecialist(search.get('specialist'))
       .then(result => {
-        console.log('users', result);
         if (result && result.length) {
-          console.log('trinis');
+          // setPagination(result.pagination);
           return setAdvertisingList(result);
         }
 
@@ -39,11 +38,12 @@ const ListadoCazatalentos = () => {
       .catch(error => {
         setAdvertisingList([]);
       });
-    // getCazatalentos(currentPage)
+
+    // getAllAdvertisingList(currentPage)
     //   .then(result => {
-    //     if (result.users) {
+    //     if (result.advertising) {
     //       setPagination(result.pagination);
-    //       return setAdvertisingList(result.users);
+    //       return setAdvertisingList(result.advertising);
     //     }
 
     //     setAdvertisingList([]);
@@ -53,6 +53,12 @@ const ListadoCazatalentos = () => {
     //   });
   };
 
+  useEffect(() => {
+    if (advertisingList === null && search) {
+      loadAdvertising();
+    }
+  }, [advertisingList, search]);
+
   const handleDelete = id => {
     const confirmation = window.confirm('¿Desea eliminarlo?');
 
@@ -61,7 +67,7 @@ const ListadoCazatalentos = () => {
       return;
     }
 
-    deleteSpecialist(id)
+    deleteSpecialistSchedule(id)
       .then(result => {
         // deleteToken();
         // router.push('/api/logout');
@@ -81,12 +87,6 @@ const ListadoCazatalentos = () => {
         alert(message);
       });
   };
-
-  useEffect(() => {
-    if (advertisingList === null && search) {
-      loadAdvertising();
-    }
-  }, [advertisingList, search]);
 
   return (
     <CRow>
@@ -109,8 +109,11 @@ const ListadoCazatalentos = () => {
             </CRow> */}
             <CRow>
               <CCol xs={12} sm={5}>
-                <Link className="btn btn-primary" to="/especialistas/agregar">
-                  Agregar Especialista
+                <Link
+                  className="btn btn-primary"
+                  to={`/horarios/agregar?specialist=${search.get('specialist')}`}
+                >
+                  Agregar horario
                 </Link>
               </CCol>
             </CRow>
@@ -127,10 +130,8 @@ const ListadoCazatalentos = () => {
                     <CTableHead>
                       <CTableRow>
                         <CTableHeaderCell scope="col">Id</CTableHeaderCell>
-                        <CTableHeaderCell scope="col">Nombre</CTableHeaderCell>
-                        <CTableHeaderCell scope="col">Email</CTableHeaderCell>
-                        <CTableHeaderCell scope="col">Identificación</CTableHeaderCell>
-                        <CTableHeaderCell scope="col">Especialidad</CTableHeaderCell>
+                        <CTableHeaderCell scope="col">Fecha inicio</CTableHeaderCell>
+                        <CTableHeaderCell scope="col">Fecha finalización</CTableHeaderCell>
                         <CTableHeaderCell scope="col">Acciones</CTableHeaderCell>
                       </CTableRow>
                     </CTableHead>
@@ -138,25 +139,14 @@ const ListadoCazatalentos = () => {
                       {advertisingList.map(advertising => (
                         <CTableRow key={advertising.id}>
                           <CTableDataCell>{advertising.id}</CTableDataCell>
-                          <CTableDataCell>{advertising.name}</CTableDataCell>
-                          <CTableDataCell>{advertising.email}</CTableDataCell>
-                          <CTableDataCell>{advertising.identification_number}</CTableDataCell>
+                          <CTableDataCell>{advertising.start_date}</CTableDataCell>
+                          <CTableDataCell>{advertising.end_date}</CTableDataCell>
                           <CTableDataCell>
-                            {advertising.specialist.specialty_data.name}
-                          </CTableDataCell>
-                          <CTableDataCell>
-                            {/* <Link
-                              to={`/cazatalentos/listado/agregar?id=${advertising.id}`}
-                              className="btn btn-success"
+                            <Link
+                              to={`/horarios/agregar?id=${advertising.id}`}
+                              className="btn btn-primary"
                             >
                               Editar
-                            </Link> */}
-                            {/* <br></br> */}
-                            <Link
-                              onClick={() => handleDelete(advertising.id)}
-                              className="btn btn-success"
-                            >
-                              Ver agenda
                             </Link>
                             <Link
                               onClick={() => handleDelete(advertising.id)}
@@ -189,4 +179,4 @@ const ListadoCazatalentos = () => {
   );
 };
 
-export default ListadoCazatalentos;
+export default Publicaciones;

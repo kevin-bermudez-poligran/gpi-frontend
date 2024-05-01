@@ -110,7 +110,7 @@ const AgregearEspecialistas = props => {
   const processClickUpdate = () => {
     if (Object.values(data).length < 4) {
       return printError(
-        'Debe llenar toda la información para poder crear el gestor: nombre, correo, nombre de usuario y biografía'
+        'Debe llenar toda la información para poder crear el especilista: nombre, correo, nombre de usuario y especialidad'
       );
     }
 
@@ -122,7 +122,7 @@ const AgregearEspecialistas = props => {
 
     updateCazatalentos(tmpData)
       .then(result => {
-        history.push('/cazatalentos/listado');
+        history.push('/especialistas/listado');
       })
       .catch(error => printError('No se puede actualizar el cazatalentos'));
   };
