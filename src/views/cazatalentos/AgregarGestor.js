@@ -19,8 +19,9 @@ import { getCazatalentosById } from '../../services/cazatalentos/getCazatalentos
 import { createCazatalentos } from '../../services/cazatalentos/createCazatalentos';
 import { updateCazatalentos } from '../../services/cazatalentos/updateCazatalentos';
 import { createSuperUsuario } from 'src/services/users/createSuperUsuario';
+import { createGestor } from 'src/services/users/createGestor';
 
-const AgregarSuperusuario = props => {
+const AgregarGestor = props => {
   const [data, setData] = useState(null);
   const [cazatalentosId, setCazatalentosId] = useState(null);
   const history = useHistory();
@@ -83,13 +84,13 @@ const AgregarSuperusuario = props => {
   const processClick = () => {
     if (Object.values(data).length < 3) {
       return printError(
-        'Debe llenar toda la información para poder crear el cazatalentos: nombre, correo, y contraseña'
+        'Debe llenar toda la información para poder crear el gestor: nombre, correo, y contraseña'
       );
     }
 
-    createSuperUsuario(data)
+    createGestor(data)
       .then(result => {
-        history.push('/superusuarios/listado');
+        history.push('/gestores/listado');
       })
       .catch(error => {
         if (error.response && error.response.data.errors) {
@@ -109,7 +110,7 @@ const AgregarSuperusuario = props => {
   const processClickUpdate = () => {
     if (Object.values(data).length < 4) {
       return printError(
-        'Debe llenar toda la información para poder crear el cazatalentos: nombre, correo, nombre de usuario y biografía'
+        'Debe llenar toda la información para poder crear el gestor: nombre, correo, nombre de usuario y biografía'
       );
     }
 
@@ -128,6 +129,38 @@ const AgregarSuperusuario = props => {
 
   const printError = (message = 'No se puede crear ahora el cazatalentos') => {
     alert(message);
+  };
+
+  const handleChangeImage = newImageParam => {
+    if (newImageParam) {
+      setSelectedImage(true);
+      handlerChange({
+        target: {
+          name: 'image',
+          value: newImageParam.target.files[0]
+        }
+      });
+      return;
+    }
+
+    setSelectedImage(false);
+    handlerChange({
+      target: {
+        name: 'image',
+        value: null
+      }
+    });
+  };
+
+  const manageChangeSelect = event => {
+    if (typeof data.region !== 'undefined' || !data.region?.trim().length) {
+      handlerChange({
+        target: {
+          name: 'region',
+          value: event.value
+        }
+      });
+    }
   };
 
   const handlerChange = event => {
@@ -149,7 +182,7 @@ const AgregarSuperusuario = props => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardBody>
-            <Link className="btn btn-primary" to="/superusuarios/listado">
+            <Link className="btn btn-primary" to="/gestores/listado">
               Volver
             </Link>
           </CCardBody>
@@ -214,4 +247,4 @@ const AgregarSuperusuario = props => {
   );
 };
 
-export default AgregarSuperusuario;
+export default AgregarGestor;

@@ -182,7 +182,7 @@ const AgregarPaciente = props => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardBody>
-            <Link className="btn btn-primary" to="/superusuarios/listado">
+            <Link className="btn btn-primary" to="/pacientes/listado">
               Volver
             </Link>
           </CCardBody>

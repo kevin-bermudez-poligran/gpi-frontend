@@ -64,8 +64,10 @@ const EditarPlan = React.lazy(() => import('./views/planes/EditarPlan'));
 
 const ListadoSuperUsuarios = React.lazy(() => import('./views/cazatalentos/ListadoSuperUsuarios'));
 const ListadoPacientes = React.lazy(() => import('./views/cazatalentos/ListadoPacientes'));
+const ListadoGestores = React.lazy(() => import('./views/cazatalentos/ListadoGestores'));
 const AgregarSuperusuario = React.lazy(() => import('./views/cazatalentos/AgregarSuperusuarios'));
 const AgregarPaciente = React.lazy(() => import('./views/cazatalentos/AgregarPaciente'));
+const AgregarGestor = React.lazy(() => import('./views/cazatalentos/AgregarGestor'));
 
 // const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 
@@ -136,6 +138,24 @@ const routes = [
     exact: true,
     name: 'Agregar paciente',
     component: AgregarPaciente
+  },
+  {
+    path: '/gestores',
+    exact: true,
+    name: 'Gestores',
+    component: ListadoGestores
+  },
+  {
+    path: '/gestores/listado',
+    exact: true,
+    name: 'Gestores',
+    component: ListadoGestores
+  },
+  {
+    path: '/gestores/agregar',
+    exact: true,
+    name: 'Agregar paciente',
+    component: AgregarGestor
   },
   {
     path: '/cazatalentos/listado/agregar',
